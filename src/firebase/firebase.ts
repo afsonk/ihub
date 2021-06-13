@@ -1,5 +1,7 @@
 import firebase from "firebase";
 
+
+/* receiving firebase date from env file for privacy purpose */
 const app = firebase.initializeApp({
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -11,4 +13,4 @@ const app = firebase.initializeApp({
 })
 
 export default app
-export const database = firebase.firestore(app)
+

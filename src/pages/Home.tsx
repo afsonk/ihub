@@ -21,6 +21,8 @@ const Home: React.FC = () => {
     const {hoursArray, daysArray} = useSelector((state: appStateType) => state.date)
     const dispatch = useDispatch()
 
+
+    /* fetching data from firestore and setting up redux storage*/
     const fetchDataOnLoad = async () => {
         const data = await getData()
         dispatch(setHoursArray(data?.time!))

@@ -1,3 +1,5 @@
+//Created this file for Home component to export components from one file
+
 export {Header} from './Header/Header'
 export {Master} from './Master/Master'
 export {Heading} from './Heading/Heading'

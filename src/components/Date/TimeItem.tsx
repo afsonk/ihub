@@ -9,6 +9,7 @@ export function TimeItem({time}: {time: string}){
     const {activeTime} = useSelector((state: appStateType) => state.date)
     const dispatch = useDispatch()
 
+    /*set active time to the redux store*/
     const handleTimeChange = () => {
         dispatch(setActiveTime(time))
     }

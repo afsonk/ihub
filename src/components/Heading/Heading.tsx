@@ -7,6 +7,8 @@ type Props = {
     text: string
 }
 
+
+/* reusable heading component */
 export function Heading({children, text}: Props){
     return(
         <IonRow className={'heading'}>

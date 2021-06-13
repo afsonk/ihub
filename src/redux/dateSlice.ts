@@ -1,5 +1,7 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit"
 
+
+/* types for the redux store*/
 export type datesObjType = {
     day: string,
     dayNumber: number
@@ -19,6 +21,7 @@ const initialState:StateType = {
     daysArray: []
 }
 
+/* dateSlice stores hour and date arrays, active date of the week and active time*/
 const dateSlice = createSlice({
     name: 'date',
     initialState: initialState,
@@ -39,4 +42,5 @@ const dateSlice = createSlice({
 })
 
 export default dateSlice.reducer
+/* dateSlice actions */
 export const {setActiveDate, setActiveTime, setHoursArray, setDatesArray} = dateSlice.actions

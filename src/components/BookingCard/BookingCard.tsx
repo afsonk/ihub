@@ -8,6 +8,8 @@ export function BookingCard(){
 
     const {activeTime, activeDate} = useSelector((state: appStateType) => state.date)
 
+
+    /* set active day and time to the firestore */
     const handleBookingClick = () => {
         setBookingDate(activeTime!,activeDate!)
     }

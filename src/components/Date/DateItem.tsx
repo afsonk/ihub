@@ -14,6 +14,7 @@ export function DateItem({day, dayNumber}:Props){
     const {activeDate} = useSelector((state: appStateType) => state.date)
     const dispatch = useDispatch()
 
+    /*set active date to the redux store*/
     const handleDayChange = () => {
         dispatch(setActiveDate(dayNumber))
     }
