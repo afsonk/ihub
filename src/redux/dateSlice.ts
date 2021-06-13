@@ -7,17 +7,14 @@ export type datesObjType = {
 
 export type StateType = {
     activeTime: string,
-    activeDate: datesObjType,
+    activeDate: number,
     hoursArray: string[],
     daysArray: datesObjType[]
 }
 
 const initialState:StateType = {
-    activeDate: {
-        day: 'Сегодня',
-        dayNumber: 26
-    },
-    activeTime: '11:30',
+    activeDate: 13,
+    activeTime: '18:00',
     hoursArray: [],
     daysArray: []
 }
@@ -27,8 +24,7 @@ const dateSlice = createSlice({
     initialState: initialState,
     reducers: {
         setActiveDate(state, action){
-            state.activeDate.day = action.payload.day
-            state.activeDate.dayNumber = action.payload.dayNumber
+            state.activeDate = action.payload
         },
         setActiveTime(state, action){
             state.activeTime = action.payload

@@ -1,6 +1,7 @@
 import {IonCard} from "@ionic/react"
-import {useSelector} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import {appStateType} from "../../redux"
+import {setActiveDate} from "../../redux/dateSlice"
 
 
 type Props = {
@@ -11,9 +12,17 @@ type Props = {
 export function DateItem({day, dayNumber}:Props){
 
     const {activeDate} = useSelector((state: appStateType) => state.date)
+    const dispatch = useDispatch()
+
+    const handleDayChange = () => {
+        dispatch(setActiveDate(dayNumber))
+    }
 
     return (
-        <IonCard class={"date-item ion-text-center active"}>
+        <IonCard
+            className={`date-item ion-text-center ${activeDate === dayNumber ? 'active' : ''}`}
+            onClick={handleDayChange}
+        >
             <p>{day}</p>
             <h2>{dayNumber}</h2>
         </IonCard>

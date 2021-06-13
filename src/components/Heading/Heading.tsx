@@ -9,7 +9,7 @@ type Props = {
 
 export function Heading({children, text}: Props){
     return(
-        <IonRow class={'heading'}>
+        <IonRow className={'heading'}>
             <IonCol size={children ? '9' : '12'}>
                 <IonText>
                     {text}
