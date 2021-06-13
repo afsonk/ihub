@@ -1,10 +1,10 @@
 import {IonCard} from "@ionic/react"
 
 
-export function TimeItem(){
+export function TimeItem({time}: {time: string}){
     return (
         <IonCard class={'time-item ion-text-center'}>
-            11:20
+            {time}
         </IonCard>
     )
 }

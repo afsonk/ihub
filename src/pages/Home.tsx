@@ -1,3 +1,4 @@
+import {useEffect} from "react"
 import {
     IonContent,
     IonIcon,
@@ -5,7 +6,7 @@ import {
     IonGrid,
     IonCol,
 } from '@ionic/react'
-
+import {useDispatch, useSelector} from "react-redux"
 // @ts-ignore
 import image from '../assets/img/man.png'
 // @ts-ignore
@@ -21,7 +22,22 @@ import {TimeItem} from "../components/Date/TimeItem"
 import {DateItem} from "../components/Date/DateItem"
 import {BookingCard} from "../components/BookingCard/BookingCard"
 
+import {getData} from '../firebase/getData'
+import {setHoursArray} from '../redux/dateSlice'
+import {appStateType} from "../redux"
+
+
 const Home: React.FC = () => {
+    const {hoursArray} = useSelector((state: appStateType) => state.date)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        (async () => {
+            const data = await getData()
+            dispatch(setHoursArray(data?.time!))
+        })()
+    }, [])
+
     return (
         <IonPage>
             <IonContent>
@@ -38,7 +54,9 @@ const Home: React.FC = () => {
                     </DateList>
                     <Heading text={'Свободное время'}></Heading>
                     <DateList>
-                        <TimeItem/>
+                        {
+                            hoursArray.map(elem => <TimeItem key={elem} time={elem}/>)
+                        }
                     </DateList>
                     <BookingCard/>
                 </IonGrid>
