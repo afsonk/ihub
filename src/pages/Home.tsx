@@ -23,18 +23,19 @@ import {DateItem} from "../components/Date/DateItem"
 import {BookingCard} from "../components/BookingCard/BookingCard"
 
 import {getData} from '../firebase/getData'
-import {setHoursArray} from '../redux/dateSlice'
+import {setHoursArray, setDatesArray} from '../redux/dateSlice'
 import {appStateType} from "../redux"
 
 
 const Home: React.FC = () => {
-    const {hoursArray} = useSelector((state: appStateType) => state.date)
+    const {hoursArray, daysArray} = useSelector((state: appStateType) => state.date)
     const dispatch = useDispatch()
 
     useEffect(() => {
         (async () => {
             const data = await getData()
             dispatch(setHoursArray(data?.time!))
+            dispatch(setDatesArray(data?.date!))
         })()
     }, [])
 
@@ -50,7 +51,9 @@ const Home: React.FC = () => {
                         </IonCol>
                     </Heading>
                     <DateList>
-                        <DateItem/>
+                        {
+                            daysArray.map(elem => <DateItem key={elem.day} dayNumber={elem.dayNumber} day={elem.day}/>)
+                        }
                     </DateList>
                     <Heading text={'Свободное время'}></Heading>
                     <DateList>

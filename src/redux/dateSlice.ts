@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit"
 
-type datesObjType = {
+export type datesObjType = {
     day: string,
     dayNumber: number
 }
@@ -35,9 +35,12 @@ const dateSlice = createSlice({
         },
         setHoursArray(state, action: PayloadAction<string[]>){
             state.hoursArray = action.payload
+        },
+        setDatesArray(state, action: PayloadAction<datesObjType[]>){
+            state.daysArray = action.payload
         }
     }
 })
 
 export default dateSlice.reducer
-export const {setActiveDate, setActiveTime, setHoursArray} = dateSlice.actions
+export const {setActiveDate, setActiveTime, setHoursArray, setDatesArray} = dateSlice.actions

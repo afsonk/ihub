@@ -1,4 +1,5 @@
 import app from "./firebase"
+import {datesObjType} from "../redux/dateSlice"
 
 
 export const getData = async () => {
@@ -11,5 +12,5 @@ export const getData = async () => {
         return null
     }
 
-    return doc.data() as {time: string[]}
+    return doc.data()
 }

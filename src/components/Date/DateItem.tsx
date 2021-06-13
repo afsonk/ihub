@@ -3,14 +3,19 @@ import {useSelector} from "react-redux"
 import {appStateType} from "../../redux"
 
 
-export function DateItem(){
+type Props = {
+    day: string,
+    dayNumber: number
+}
+
+export function DateItem({day, dayNumber}:Props){
 
     const {activeDate} = useSelector((state: appStateType) => state.date)
 
     return (
         <IonCard class={"date-item ion-text-center active"}>
-            <p>{activeDate.day}</p>
-            <h2>{activeDate.dayNumber}</h2>
+            <p>{day}</p>
+            <h2>{dayNumber}</h2>
         </IonCard>
     )
 }
