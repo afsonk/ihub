@@ -1,4 +1,4 @@
-import {useEffect, useLayoutEffect} from "react"
+import {useEffect} from "react"
 import {
     IonContent,
     IonIcon,
@@ -7,24 +7,14 @@ import {
     IonCol,
 } from '@ionic/react'
 import {useDispatch, useSelector} from "react-redux"
-// @ts-ignore
-import image from '../assets/img/man.png'
-// @ts-ignore
+
 import list from '../assets/img/Vector.svg'
-// @ts-ignore
-import calen from '../assets/img/Union.svg'
 import './Home.css'
-import {Header} from "../components/Header/Header"
-import {Master} from "../components/Master/Master"
-import {Heading} from "../components/Heading/Heading"
-import {DateList} from "../components/Date/DateLIst"
-import {TimeItem} from "../components/Date/TimeItem"
-import {DateItem} from "../components/Date/DateItem"
-import {BookingCard} from "../components/BookingCard/BookingCard"
 
 import {getData} from '../firebase/getData'
-import {setHoursArray, setDatesArray, setActiveTime, setActiveDate} from '../redux/dateSlice'
 import {appStateType} from "../redux"
+import {setHoursArray, setDatesArray, setActiveTime, setActiveDate} from '../redux/dateSlice'
+import {BookingCard, DateItem, DateList, Header, Heading, Master, TimeItem} from "../components"
 
 
 const Home: React.FC = () => {
@@ -39,7 +29,7 @@ const Home: React.FC = () => {
         dispatch(setActiveTime(data?.activeTime))
     }
 
-    useLayoutEffect(() => {
+    useEffect(() => {
            fetchDataOnLoad()
     }, [])
 
