@@ -1,11 +1,16 @@
 import {IonButton, IonCard, IonCol, IonRow} from "@ionic/react"
 import {useSelector} from "react-redux"
 import {appStateType} from "../../redux"
+import {setBookingDate} from "../../firebase/getData"
 
 
 export function BookingCard(){
 
     const {activeTime, activeDate} = useSelector((state: appStateType) => state.date)
+
+    const handleBookingClick = () => {
+        setBookingDate(activeTime!,activeDate!)
+    }
 
     return (
         <IonCard className={'bottom-card'}>
@@ -24,7 +29,7 @@ export function BookingCard(){
                 </IonCol>
             </IonRow>
             <IonRow className="ion-justify-content-center date-time">
-                <IonButton className={'check-btn'} color="secondary">
+                <IonButton className={'check-btn'} color="secondary" onClick={handleBookingClick}>
                     ЗАПИСАТЬСЯ НА БЕСПЛАТНУЮ ВСТРЕЧУ
                 </IonButton>
             </IonRow>

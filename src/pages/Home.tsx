@@ -1,4 +1,4 @@
-import {useEffect} from "react"
+import {useEffect, useLayoutEffect} from "react"
 import {
     IonContent,
     IonIcon,
@@ -23,7 +23,7 @@ import {DateItem} from "../components/Date/DateItem"
 import {BookingCard} from "../components/BookingCard/BookingCard"
 
 import {getData} from '../firebase/getData'
-import {setHoursArray, setDatesArray} from '../redux/dateSlice'
+import {setHoursArray, setDatesArray, setActiveTime, setActiveDate} from '../redux/dateSlice'
 import {appStateType} from "../redux"
 
 
@@ -31,12 +31,16 @@ const Home: React.FC = () => {
     const {hoursArray, daysArray} = useSelector((state: appStateType) => state.date)
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        (async () => {
-            const data = await getData()
-            dispatch(setHoursArray(data?.time!))
-            dispatch(setDatesArray(data?.date!))
-        })()
+    const fetchDataOnLoad = async () => {
+        const data = await getData()
+        dispatch(setHoursArray(data?.time!))
+        dispatch(setDatesArray(data?.date!))
+        dispatch(setActiveDate(data?.activeDate))
+        dispatch(setActiveTime(data?.activeTime))
+    }
+
+    useLayoutEffect(() => {
+           fetchDataOnLoad()
     }, [])
 
     return (
@@ -52,13 +56,13 @@ const Home: React.FC = () => {
                     </Heading>
                     <DateList>
                         {
-                            daysArray.map(elem => <DateItem key={elem.day} dayNumber={elem.dayNumber} day={elem.day}/>)
+                            daysArray?.map(elem => <DateItem key={elem.day} dayNumber={elem.dayNumber} day={elem.day}/>)
                         }
                     </DateList>
                     <Heading text={'Свободное время'}></Heading>
                     <DateList>
                         {
-                            hoursArray.map(elem => <TimeItem key={elem} time={elem}/>)
+                            hoursArray?.map(elem => <TimeItem key={elem} time={elem}/>)
                         }
                     </DateList>
                     <BookingCard/>

@@ -6,15 +6,15 @@ export type datesObjType = {
 }
 
 export type StateType = {
-    activeTime: string,
-    activeDate: number,
+    activeTime: string | null,
+    activeDate: number | null,
     hoursArray: string[],
     daysArray: datesObjType[]
 }
 
 const initialState:StateType = {
-    activeDate: 13,
-    activeTime: '18:00',
+    activeDate: null,
+    activeTime: null,
     hoursArray: [],
     daysArray: []
 }
