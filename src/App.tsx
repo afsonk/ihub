@@ -1,6 +1,6 @@
-import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router'
+import {Redirect, Route} from 'react-router-dom'
+import {IonApp, IonRouterOutlet} from '@ionic/react'
+import {IonReactRouter} from '@ionic/react-router'
 import Home from './pages/Home'
 
 /* Core CSS required for Ionic components to work properly */
@@ -21,20 +21,24 @@ import '@ionic/react/css/display.css'
 
 /* Theme variables */
 import './theme/variables.css'
+import store from "./redux"
+import {Provider} from "react-redux"
 
 const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route exact path="/home">
-          <Home />
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
-      </IonRouterOutlet>
-    </IonReactRouter>
-  </IonApp>
+    <IonApp>
+        <IonReactRouter>
+            <Provider store={store}>
+                <IonRouterOutlet>
+                    <Route exact path="/home">
+                        <Home/>
+                    </Route>
+                    <Route exact path="/">
+                        <Redirect to="/home"/>
+                    </Route>
+                </IonRouterOutlet>
+            </Provider>
+        </IonReactRouter>
+    </IonApp>
 )
 
 export default App

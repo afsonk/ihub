@@ -2,10 +2,7 @@ import {
     IonContent,
     IonIcon,
     IonPage,
-    IonCard,
-    IonButton,
     IonGrid,
-    IonRow,
     IonCol,
 } from '@ionic/react'
 
@@ -25,7 +22,6 @@ import {DateItem} from "../components/Date/DateItem"
 import {BookingCard} from "../components/BookingCard/BookingCard"
 
 const Home: React.FC = () => {
-
     return (
         <IonPage>
             <IonContent>
